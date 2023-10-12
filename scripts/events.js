@@ -20,12 +20,12 @@ out the above onclick listener and build an alternate one below - try the
 following - onfocus/onblur, ondblclick, onmouseover/onmouseout, 
 window.onkeypress/onkeydown/onkeyup
 */
-pageInput.onfocus = bgChange;
-pageInput.onblur = bgChange;
-btn.ondblclick = bgChange;
-header1.onmouseover = bgChange;
-header1.onmouseout = bgChange;
-window.onkeydown = bgChange;
+// pageInput.onfocus = bgChange;
+// pageInput.onblur = bgChange;
+// btn.ondblclick = bgChange;
+// header1.onmouseover = bgChange;
+// header1.onmouseout = bgChange;
+// window.onkeydown = bgChange;
 
 /* STEP 2: Inline event handlers - don't use! */
 // Comment out the above event listener/handler, and 
@@ -33,14 +33,21 @@ window.onkeydown = bgChange;
 
 /* STEP 3: Let's apply event handlers/listeners to a group of buttons - 
 comment out the above BUTTON element, and create three new ones, A, B, and C */
-// var pageButtons = document.querySelectorAll("button");
-// for (let i = 0; i < pageButtons.length; i++) {
-// 	pageButtons[i].addEventListener("click", bgChange);
-// }
+var pageButtons = document.querySelectorAll("button");
+for (let i = 0; i < pageButtons.length; i++) {
+    pageButtons[i].addEventListener("click", bgChange);
+}
 
 /* STEP 4a: addEventListener() and removeEventListener()
 Let's rewrite the above code with these two methods - comment out the A, B, C buttons and restore the original button - then comment out the above code */
+// pageButtons[0].removeEventListener("click", bgChange);
 
+// lets add an event listener on button A, and if that is pressed, it removes all thre event listeners
+pageButtons[0].addEventListener("click", function () { // () => {}
+    pageButtons[0].removeEventListener("click", bgChange); // removing for button A
+    pageButtons[1].removeEventListener("click", bgChange); // removing for button B
+    pageButtons[2].removeEventListener("click", bgChange); // removing for button C
+})
 
 /* STEP 4b: We can also put the entire bgChange() 
 function inside an anonymous function, if we'd like: */
